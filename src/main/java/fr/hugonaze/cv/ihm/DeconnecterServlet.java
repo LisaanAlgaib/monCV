@@ -9,15 +9,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/accueil")
-public class AccueilServlet extends HttpServlet {
+@WebServlet("/deconnecter")
+public class DeconnecterServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		HttpSession session = req.getSession();
-		req.getRequestDispatcher("WEB-INF/pages/index.jsp").forward(req, resp);
-		
+		session.invalidate();
+		req.getRequestDispatcher("/accueil").forward(req, resp);
+		return;
 	}
+	
 	
 }
