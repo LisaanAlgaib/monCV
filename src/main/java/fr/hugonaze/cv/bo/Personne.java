@@ -10,6 +10,7 @@ public class Personne {
 	private String nationalite;
 	private String permis;
 	private ReseauSocial[] reseaux_sociaux;
+	private String image;
 	
 	public Personne() {
 		
@@ -25,6 +26,32 @@ public class Personne {
 	 * @param nationalite
 	 * @param permis
 	 * @param reseaux_sociaux est un tableau contenant tous les réseaux sociaux liés à la personne en question
+	 * @param image est la photo de la personne sur qui porte le CV
+	 */
+	public Personne(int no_telephone, String email, int code_postal, String ville, int age, String nationalite,
+			String permis, ReseauSocial[] reseaux_sociaux, String image) {
+		
+		setNo_telephone(no_telephone);
+		setEmail(email);
+		setCode_postal(code_postal);
+		setVille(ville);
+		setAge(age);
+		setNationalite(nationalite);
+		setPermis(permis);
+		setReseaux_sociaux(reseaux_sociaux);
+		setImage(image);
+	}
+	
+	/**
+	 * Constructeur de la classe personne sans le paramètre image, classe qui vient remplir la description des informations personnelles de la personne présentée par le CV
+	 * @param no_telephone
+	 * @param email
+	 * @param code_postal
+	 * @param ville
+	 * @param age
+	 * @param nationalite
+	 * @param permis
+	 * @param reseaux_sociaux
 	 */
 	public Personne(int no_telephone, String email, int code_postal, String ville, int age, String nationalite,
 			String permis, ReseauSocial[] reseaux_sociaux) {
@@ -37,7 +64,6 @@ public class Personne {
 		setNationalite(nationalite);
 		setPermis(permis);
 		setReseaux_sociaux(reseaux_sociaux);
-		
 	}
 
 	public int getNo_telephone() {
@@ -103,6 +129,13 @@ public class Personne {
 	public void setReseaux_sociaux(ReseauSocial[] reseaux_sociaux) {
 		this.reseaux_sociaux = reseaux_sociaux;
 	}
-	
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
 	
 }
