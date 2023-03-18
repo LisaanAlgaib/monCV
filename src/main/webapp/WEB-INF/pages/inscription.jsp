@@ -29,8 +29,10 @@
 			<label for="confirm-mdp">Confirmation du mot de passe : </label>
 			<input type="text" name="confirm-mdp" id="confirm-mdp" placeholder="Confirmez votre mot de passe" required>
 			<label for="autorisation">Code d'autorisation d'inscription : </label>
-			<input type="text" name="autorisation" id="autorisation" placeholder="Indiquez le code d'autorisation à l'inscription">
-			
+			<input type="text" name="autorisation" id="autorisation" placeholder="Indiquez le code d'autorisation à l'inscription" required>
+			<label for="couleur">Couleur préférée (à saisir en cas de mot de passe oublié) : </label>
+			<input type="text" name="couleur" id="couleur" placeholder="cuisse de nymphe émue" required>
+			<input type="submit" value="S'inscrire">
 		</form>
 	</div>
 </main>
