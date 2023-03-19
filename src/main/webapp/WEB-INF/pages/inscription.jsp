@@ -7,15 +7,7 @@
 <title>S'inscrire</title>
 </head>
 <body>
-	<nav>
-		<ul>
-			<li>Accueil</li>
-			<li>CV</li>
-			<li>Me contacter</li>
-			<li>S'inscrire</li>
-			<li>Se connecter</li>
-		</ul>
-	</nav>
+<%@ include file="/WEB-INF/parts/header.jsp" %>
 <main>
 	<h1>Formulaire d'inscription</h1>
 	<div class="form-inscription">

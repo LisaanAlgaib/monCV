@@ -8,15 +8,7 @@
 <title>Se Connecter</title>
 </head>
 <body>
-	<nav>
-		<ul>
-			<li>Accueil</li>
-			<li>CV</li>
-			<li>Me contacter</li>
-			<li>S'inscrire</li>
-			<li>Se connecter</li>
-		</ul>
-	</nav>
+<%@ include file="/WEB-INF/parts/header.jsp" %>
 	<main>
 		<div class="form-connexion">
 			<h1>Connexion</h1>
