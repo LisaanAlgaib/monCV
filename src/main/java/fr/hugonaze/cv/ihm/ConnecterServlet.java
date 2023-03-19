@@ -9,9 +9,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.hugonaze.cv.bll.UtilisateurManager;
+import fr.hugonaze.cv.exceptions.CvExceptions;
+
 @WebServlet("/connecter")
 public class ConnecterServlet extends HttpServlet {
 
+private UtilisateurManager service;
+	
+	//Instanciation unique d'un objet UtilisateurManager
+	public ConnecterServlet() {
+		service = UtilisateurManager.getInstance();
+	}
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
@@ -22,6 +32,12 @@ public class ConnecterServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+		HttpSession session = req.getSession();
+		CvExceptions exceptions = new CvExceptions();
+		String pseudo = req.getParameter("identifiant");
+		String mot_de_passe = req.getParameter("mdp");
+		
+		if(pseudo)
 	}
 
 	
