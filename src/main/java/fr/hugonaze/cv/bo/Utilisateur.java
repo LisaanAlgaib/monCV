@@ -2,6 +2,7 @@ package fr.hugonaze.cv.bo;
 
 public class Utilisateur {
 
+	private int no_utilisateur;
 	private String pseudo;
 	private String email;
 	private String mot_de_passe;

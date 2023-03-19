@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 public class ExperiencePro {
 
+	private int no_experience_pro;
 	private String appellation;
 	private String ville;
 	private String entreprise;
@@ -18,6 +19,7 @@ public class ExperiencePro {
 	
 	/**
 	 * Constructeur entier de la classe ExperiencePro
+	 * @param no_experience_pro est le numéro unique de l'expérience pro. Généré par IDENTITY en BDD
 	 * @param appellation
 	 * @param ville
 	 * @param entreprise
@@ -25,9 +27,10 @@ public class ExperiencePro {
 	 * @param date_fin_experience
 	 * @param missions
 	 */
-	public ExperiencePro(String appellation, String ville, String entreprise, LocalDateTime date_debut_experience,
+	public ExperiencePro(int no_experience_pro, String appellation, String ville, String entreprise, LocalDateTime date_debut_experience,
 			LocalDateTime date_fin_experience, String[] missions) {
 		
+		setNo_experience_pro(no_experience_pro);
 		setAppellation(appellation);
 		setVille(ville);
 		setEntreprise(entreprise);
@@ -96,6 +99,13 @@ public class ExperiencePro {
 	public void setMissions(String[] missions) {
 		this.missions = missions;
 	}
-	
+
+	public int getNo_experience_pro() {
+		return no_experience_pro;
+	}
+
+	public void setNo_experience_pro(int no_experience_pro) {
+		this.no_experience_pro = no_experience_pro;
+	}
 	
 }
