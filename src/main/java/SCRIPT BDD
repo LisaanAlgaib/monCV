@@ -1,0 +1,124 @@
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! CREATION TABLES !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+CREATE TABLE SOFT_SKILLS ( 
+no_soft_skill INTEGER IDENTITY(1,1) NOT NULL,
+no_personne INTEGER NULL,
+appellation VARCHAR(70) NOT NULL,
+image VARCHAR(150) NULL
+)
+
+ALTER TABLE SOFT_SKILLS ADD CONSTRAINT pk_soft_skills PRIMARY KEY (no_soft_skill)
+
+CREATE TABLE FORMATIONS (
+no_formation INTEGER IDENTITY(1,1) NOT NULL,
+no_personne INTEGER NULL,
+appellation VARCHAR(70) NOT NULL,
+date_debut DATETIME NOT NULL,
+date_fin DATETIME NULL,
+organisme VARCHAR(80) NOT NULL,
+description VARCHAR(300) NULL,
+ville VARCHAR(60) NOT NULL
+)
+
+ALTER TABLE FORMATIONS ADD CONSTRAINT pk_formations PRIMARY KEY (no_formation)
+
+CREATE TABLE EXPERIENCES_PROS (
+no_experience_pro INTEGER IDENTITY(1,1) NOT NULL,
+no_personne INTEGER NULL,
+appellation VARCHAR(70) NOT NULL,
+ville VARCHAR(60) NOT NULL,
+entreprise VARCHAR(70) NOT NULL,
+date_debut DATETIME NOT NULL,
+date_fin DATETIME NULL,
+missions VARCHAR(400) NULL
+)
+
+ALTER TABLE EXPERIENCES_PROS ADD CONSTRAINT pk_experiences_pros PRIMARY KEY (no_experience_pro)
+
+CREATE TABLE COMPETENCES (
+no_competence INTEGER IDENTITY(1,1) NOT NULL,
+no_personne INTEGER NULL,
+appellation VARCHAR(70) NOT NULL,
+description VARCHAR(250) NOT NULL
+)
+
+ALTER TABLE COMPETENCES ADD CONSTRAINT pk_competences PRIMARY KEY (no_competence)
+
+CREATE TABLE INTERETS (
+no_interet INTEGER IDENTITY(1,1) NOT NULL,
+no_personne INTEGER NULL,
+appellation VARCHAR(70) NOT NULL,
+image VARCHAR(150) NULL
+)
+
+ALTER TABLE INTERETS ADD CONSTRAINT pk_interets PRIMARY KEY (no_interet)
+
+CREATE TABLE RESEAUX_SOCIAUX (
+no_reseau_social INTEGER IDENTITY(1,1) NOT NULL,
+no_personne INTEGER NOT NULL,
+appellation VARCHAR(70) NOT NULL,
+lien VARCHAR(80) NOT NULL,
+)
+
+ALTER TABLE RESEAUX_SOCIAUX ADD CONSTRAINT pk_reseaux_sociaux PRIMARY KEY (no_reseau_social)
+
+CREATE TABLE PERSONNES (
+no_personne INTEGER IDENTITY(1,1) NOT NULL,
+no_telephone INTEGER NOT NULL,
+email VARCHAR(40) NOT NULL,
+code_postal INTEGER NOT NULL,
+ville VARCHAR(60) NOT NULL,
+age INTEGER NOT NULL,
+nationalite VARCHAR(30) NOT NULL,
+permis VARCHAR(60) NOT NULL,
+image VARCHAR(150) NULL,
+)
+
+ALTER TABLE PERSONNES ADD CONSTRAINT pk_personnes PRIMARY KEY (no_personne)
+
+CREATE TABLE UTILISATEURS (
+no_utilisateur INTEGER IDENTITY(1,1) NOT NULL,
+pseudo VARCHAR(30) NOT NULL,
+email VARCHAR(40) NOT NULL,
+mot_de_passe VARCHAR(40) NOT NULL,
+couleur_preferee VARCHAR(40) NOT NULL,
+administrateur BIT NOT NULL,
+)
+
+ALTER TABLE UTILISATEURS ADD CONSTRAINT pk_utilisateurs PRIMARY KEY (no_utilisateur)
+ALTER TABLE UTILISATEURS ADD CONSTRAINT uq_utilisateurs_email UNIQUE (email)
+ALTER TABLE UTILISATEURS ADD CONSTRAINT uq_utilisateurs_pseudo UNIQUE (pseudo)
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! INTEGRITE REFERENTIELLE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+ALTER TABLE SOFT_SKILLS
+    ADD CONSTRAINT fk_soft_skills_personnes FOREIGN KEY ( no_personne ) REFERENCES PERSONNES ( no_personne )
+	ON DELETE NO ACTION 
+    ON UPDATE NO ACTION
+
+ALTER TABLE FORMATIONS
+    ADD CONSTRAINT fk_formations_personnes FOREIGN KEY ( no_personne ) REFERENCES PERSONNES ( no_personne )
+	ON DELETE NO ACTION 
+    ON UPDATE NO ACTION
+
+ALTER TABLE EXPERIENCES_PROS
+    ADD CONSTRAINT fk_experiences_pros_personnes FOREIGN KEY ( no_personne ) REFERENCES PERSONNES ( no_personne )
+	ON DELETE NO ACTION 
+    ON UPDATE NO ACTION
+
+ALTER TABLE COMPETENCES
+    ADD CONSTRAINT fk_competences_personnes FOREIGN KEY ( no_personne ) REFERENCES PERSONNES ( no_personne )
+	ON DELETE NO ACTION 
+    ON UPDATE NO ACTION
+
+ALTER TABLE INTERETS
+    ADD CONSTRAINT fk_interets_personnes FOREIGN KEY ( no_personne ) REFERENCES PERSONNES ( no_personne )
+	ON DELETE NO ACTION 
+    ON UPDATE NO ACTION
+
+ALTER TABLE RESEAUX_SOCIAUX
+    ADD CONSTRAINT fk_reseaux_sociaux_personnes FOREIGN KEY ( no_personne ) REFERENCES PERSONNES ( no_personne )
+	ON DELETE NO ACTION 
+    ON UPDATE NO ACTION
