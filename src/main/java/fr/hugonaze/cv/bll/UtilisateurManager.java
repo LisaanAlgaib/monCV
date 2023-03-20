@@ -43,4 +43,11 @@ public class UtilisateurManager {
 		
 		return user;
 	}
+	
+	public Utilisateur inscription_utilisateur(Utilisateur user) throws CvExceptions {
+		
+		Utilisateur utilisateur = new Utilisateur();
+		utilisateur = utilisateurDAO.inscription_user(user);	
+		return utilisateur;
+	}
 }
