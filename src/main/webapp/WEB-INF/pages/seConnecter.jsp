@@ -12,11 +12,14 @@
 	<main>
 		<div class="form-connexion">
 			<h1>Connexion</h1>
+				<div class="exceptions">
+					<p>${requestScope.exceptions.toString()}</p>			
+				</div>
 			<form action="<%= request.getContextPath() %>/connecter" method="post">
 				<label for="identifiant">Pseudo : </label>
 				<input type="text" name="identifiant" placeholder="Indiquez votre pseudo" id="identifiant">
 				<label for="mdp">Mot de passe : </label>
-				<input type="text" name="mdp" placeholder="Indiquez votre mot de passe" id="mdp">
+				<input type="password" name="mdp" placeholder="Indiquez votre mot de passe" id="mdp">
 				<input type="checkbox" name="souvenir" value="true" id="souvenir">
 				<label for="souvenir">Se souvenir de moi</label>
 				<input type="submit" value="Me connecter">	

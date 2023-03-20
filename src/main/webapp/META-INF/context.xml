@@ -6,7 +6,7 @@ maxIdle="30"
 maxTotal="100" 
 password="Pa$$w0rd" 
 username="Kwisatz" 
-url="jdbc:sqlserver://localhost:1433;databasename=CV;IntegratedSecurity=false;encrypt=false;trustServerCertificate=false" 
+url="jdbc:sqlserver://192.168.1.14:1433;databasename=CV;IntegratedSecurity=false;encrypt=false;trustServerCertificate=false" 
 type="javax.sql.DataSource" 
 driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver" 
 name="jdbc/pool_cnx"/>

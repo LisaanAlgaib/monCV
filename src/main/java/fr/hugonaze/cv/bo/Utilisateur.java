@@ -13,8 +13,28 @@ public class Utilisateur {
 		
 	}
 	
+	
 	/**
-	 * Constructeur entier de la classe utilisateur, classe issue de l'inscription d'un utilisateur et permettant de se connecter au site
+	 * Constructeur de la classe utilisateur que l'on utilise lors de la connexion.
+	 * @param no_utilisateur
+	 * @param pseudo
+	 * @param email
+	 * @param mot_de_passe
+	 * @param couleur_preferee
+	 * @param administrateur
+	 */
+	public Utilisateur(int no_utilisateur, String pseudo, String email, String couleur_preferee,
+			int administrateur) {
+		
+		setNo_utilisateur(no_utilisateur);
+		setPseudo(pseudo);
+		setEmail(email);
+		setCouleur_preferee(couleur_preferee);
+		setAdministrateur(administrateur);
+	}
+
+	/**
+	 * Constructeur de la classe utilisateur, classe issue de l'inscription d'un utilisateur et permettant de se connecter au site
 	 * @param pseudo
 	 * @param email
 	 * @param mot_de_passe
@@ -63,6 +83,18 @@ public class Utilisateur {
 
 	public int getAdministrateur() {
 		return administrateur;
+	}
+
+	public int getNo_utilisateur() {
+		return no_utilisateur;
+	}
+
+	public void setNo_utilisateur(int no_utilisateur) {
+		this.no_utilisateur = no_utilisateur;
+	}
+
+	public void setAdministrateur(int administrateur) {
+		this.administrateur = administrateur;
 	}
 			
 }

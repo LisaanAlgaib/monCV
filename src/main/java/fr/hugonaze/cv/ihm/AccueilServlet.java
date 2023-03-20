@@ -19,5 +19,13 @@ public class AccueilServlet extends HttpServlet {
 		req.getRequestDispatcher("WEB-INF/pages/index.jsp").forward(req, resp);
 		
 	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		HttpSession session = req.getSession();
+		req.getRequestDispatcher("WEB-INF/pages/index.jsp").forward(req, resp);
+	}
+	
 	
 }
