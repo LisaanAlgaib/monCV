@@ -14,7 +14,7 @@ public abstract class MsgsExcepts {
 	
 	public static final String OBLIGATORY_ALL_INPUTS = "Tous les champs sont obligatoires";
 	
-	public static final String WRONG_AUTORISATION_CODE = "Le code d'autorisation indiqué n'est pas valide. Réessayez avec 'pPmlOnArrRTzZ$â'. Non je plaisante, réessayez ou contactez-moi pour l'obtenir";
+	public static final String WRONG_AUTORISATION_CODE = "Le code d'autorisation indiqué n'est pas valide. Réessayez avec 'pPmlOnArrRTzZ$â'. Je plaisante, réessayez ou contactez-moi pour l'obtenir";
 	
 	public static final String PASSWORD_CONFIRM_FAILED = "Les deux mots de passe indiqués doivent être identiques";
 	

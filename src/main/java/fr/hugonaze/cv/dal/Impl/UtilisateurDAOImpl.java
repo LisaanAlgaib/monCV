@@ -14,8 +14,8 @@ import fr.hugonaze.cv.exceptions.MsgsExcepts;
 public class UtilisateurDAOImpl implements UtilisateurDAO {
 
 	private static final String SELECT_UTILISATEUR = "SELECT * FROM UTILISATEURS WHERE pseudo = ? AND mot_de_passe = ?;";
-	private static final String SELECT_PSEUDO_INSCRIPTION = "SELECT pseudo WHERE pseudo = ?;";
-	private static final String SELECT_EMAIL_INSCRIPTION = "SELECT email WHERE email = ?;";
+	private static final String SELECT_PSEUDO_INSCRIPTION = "SELECT pseudo FROM utilisateurs WHERE pseudo = ?;";
+	private static final String SELECT_EMAIL_INSCRIPTION = "SELECT email FROM utilisateurs WHERE email = ?;";
 	private static final String INSERT_INSCRIPTION = "INSERT INTO utilisateurs (pseudo, email, mot_de_passe, couleur_preferee, administrateur) VALUES (?, ?, ?, ?, ?);";
 		
 	@Override
@@ -66,26 +66,20 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 				PreparedStatement pstmt3 = cnx.prepareStatement(INSERT_INSCRIPTION);
 				) {
 			pstmt.setString(1, user.getPseudo());
-			pstmt2.setString(2, user.getEmail());
+			pstmt2.setString(1, user.getEmail());
 			
 			//Vérifie que le pseudo n'est pas déjà utilisé par un autre utilisateur
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				utilisateur.setPseudo(rs.getString("pseudo"));
+				exceptions.addMessage(MsgsExcepts.PSEUDO_ALREADY_USED);
 			}
 			
 			//Vérifie que l'email n'est pas déjà utilisé par un autre utilisateur
 			ResultSet rs2 = pstmt2.executeQuery();
 			while(rs2.next()) {
 				utilisateur.setEmail(rs.getString("email"));
-			}
-			
-			if((utilisateur.getEmail()).equals(user.getEmail()) && (utilisateur.getPseudo()).equals(user.getPseudo())) {
-				exceptions.addMessage(MsgsExcepts.EMAIL_PSEUDO_ALREADY_USED);
-			} else if ((utilisateur.getEmail()).equals(user.getEmail())) {
 				exceptions.addMessage(MsgsExcepts.EMAIL_ALREADY_USED);
-			} else if ((utilisateur.getPseudo()).equals(user.getPseudo())) {
-				exceptions.addMessage(MsgsExcepts.PSEUDO_ALREADY_USED);
 			}
 			
 			//Si l'email et/ou le pseudo est/sont utilisé(s) par un autre utilisateur, met fin au traitement et remonte une exception, sinon, continue l'inscription
@@ -102,6 +96,9 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 			
 		} catch(SQLException e) {
 			exceptions.addMessage(MsgsExcepts.CONN_BDD_FAIL);
+		}
+		
+		if(exceptions.hasErrors()) {
 			throw exceptions;
 		}
 		

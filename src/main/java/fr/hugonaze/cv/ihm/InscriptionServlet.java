@@ -70,8 +70,7 @@ private UtilisateurManager service;
 			req.getRequestDispatcher("/accueil").forward(req, resp);
 			return;
 		} catch (CvExceptions e) {
-			e.printStackTrace();
-			req.setAttribute("exceptions", exceptions);
+			req.setAttribute("exceptions", e);
 			req.getRequestDispatcher("WEB-INF/pages/inscription.jsp").forward(req, resp);
 			return;
 		}
