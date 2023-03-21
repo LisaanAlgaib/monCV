@@ -78,7 +78,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 			//Vérifie que l'email n'est pas déjà utilisé par un autre utilisateur
 			ResultSet rs2 = pstmt2.executeQuery();
 			while(rs2.next()) {
-				utilisateur.setEmail(rs.getString("email"));
+				utilisateur.setEmail(rs2.getString("email"));
 				exceptions.addMessage(MsgsExcepts.EMAIL_ALREADY_USED);
 			}
 			

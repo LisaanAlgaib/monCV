@@ -36,34 +36,42 @@ private UtilisateurManager service;
 		
 		HttpSession session = req.getSession();
 		CvExceptions exceptions = new CvExceptions();
-		String pseudo = req.getParameter("pseudo");
-		String mdp = req.getParameter("mdp");
-		String mdp_confirm = req.getParameter("confirm-mdp");
-		String email = req.getParameter("email");
-		String couleur_pref = req.getParameter("couleur");
-		String autorisation = req.getParameter("autorisation");
+		
+		//Récupération champs input avec suppression des éventuels espaces avant et après
+		String pseudo = req.getParameter("pseudo").trim();
+		String mdp = req.getParameter("mdp").trim();
+		String mdp_confirm = req.getParameter("confirm-mdp").trim();
+		String email = req.getParameter("email").trim();
+		String couleur_pref = req.getParameter("couleur").trim();
+		String autorisation = req.getParameter("autorisation").trim();
+		Utilisateur user = new Utilisateur(pseudo, email, mdp, couleur_pref);
 		
 		//Test supplémentaire sur le fait que les inputs ne doivent pas être vides (s'ajoutent à "required" d'html)
-		if(pseudo.equals("") || mdp.equals("") || mdp_confirm.equals("") || email.equals("") 
-				|| couleur_pref.equals("") || autorisation.equals("")) {
+		if(pseudo.isEmpty() || mdp.isEmpty() || mdp_confirm.isEmpty() || email.isEmpty() 
+				|| couleur_pref.isEmpty() || autorisation.isEmpty()) {
 			exceptions.addMessage(MsgsExcepts.OBLIGATORY_ALL_INPUTS);
 		} else if(!autorisation.equals("zkgsvkioz%%")) {
+			autorisation = "";
 			exceptions.addMessage(MsgsExcepts.WRONG_AUTORISATION_CODE);
 		} else if(!email.contains("@")) {
+			user.setEmail("");
 			exceptions.addMessage(MsgsExcepts.NOT_AN_EMAIL);
 		}
 		
 		if(!mdp.equals(mdp_confirm)) {
+			mdp_confirm = "";
 			exceptions.addMessage(MsgsExcepts.PASSWORD_CONFIRM_FAILED);
 		}
 		
 		if(exceptions.hasErrors()) {
 			req.setAttribute("exceptions", exceptions);
+			req.setAttribute("user", user);
+			req.setAttribute("autorisation", autorisation);
+			req.setAttribute("mdp_confirm", mdp_confirm);
 			req.getRequestDispatcher("WEB-INF/pages/inscription.jsp").forward(req, resp);
 			return;
 		}
-		
-		Utilisateur user = new Utilisateur(pseudo, email, mdp, couleur_pref);
+			
 		try {
 			user = service.inscription_utilisateur(user);
 			session.setAttribute("utilisateur", user);
@@ -71,6 +79,9 @@ private UtilisateurManager service;
 			return;
 		} catch (CvExceptions e) {
 			req.setAttribute("exceptions", e);
+			req.setAttribute("user", user);
+			req.setAttribute("autorisation", autorisation);
+			req.setAttribute("mdp_confirm", mdp_confirm);
 			req.getRequestDispatcher("WEB-INF/pages/inscription.jsp").forward(req, resp);
 			return;
 		}

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,17 +20,28 @@
 				</div>
 			<form action="<%= request.getContextPath() %>/connecter" method="post">
 				<label for="identifiant">Pseudo : </label>
-				<input type="text" name="identifiant" placeholder="Indiquez votre pseudo" id="identifiant">
+					<input type="text" name="identifiant" placeholder="Pseudo" id="identifiant" max="30"><br>
 				<label for="mdp">Mot de passe : </label>
-				<input type="password" name="mdp" placeholder="Indiquez votre mot de passe" id="mdp">
-				<input type="checkbox" name="souvenir" value="true" id="souvenir">
-				<label for="souvenir">Se souvenir de moi</label>
-				<input type="submit" value="Me connecter">	
+					<input type="password" name="mdp" placeholder="Mot de passe" id="mdp" max="40"><br>
+					<input type="checkbox" name="souvenir" value="true" id="souvenir">
+				<label for="souvenir">Se souvenir de moi</label><br>
+					<input type="submit" value="Me connecter">	
 			</form>
 		</div>
 		<div class="mdp-oublie">
-			<p><a href="#">Mot de passe oublié</a></p>
+			<p><a href="<%= request.getContextPath()%>/mdpOublie">Mot de passe oublié</a></p>
 		</div>
+					<c:if test="${!empty requestScope.mdpOublie}">
+		<div class="form-mdp-oublie">
+			<form action="<%=request.getContextPath()%>/mdpOublie" method="post">
+				<label for="email-oublie">Indiquez votre email : </label>
+					<input type="email" name="email-oublie" id="email-oublie" placeholder="Email" max="40" required>
+				<label for="couleur-oublie">Quelle est votre couleur préférée ? </label>
+					<input type="text" name="couleur-oublie" id="couleur-oublie" placeholder="Indigo du web" max="40" required>
+					<input type="submit" value="Valider">
+			</form>
+		</div>
+					</c:if>
 		<div class="s'inscrire">
 			<h2><a href="<%= request.getContextPath() %>/inscription">S'inscrire</a></h2>
 		</div>
