@@ -25,4 +25,10 @@ public abstract class MsgsExcepts {
 	public static final String EMAIL_ALREADY_USED = "Cet email est déjà utilisé pour un autre compte";
 	
 	public static final String PSEUDO_ALREADY_USED = "Ce pseudo est déjà utilisé pour un autre compte";
+	
+	public static final String EMAIL_COULEUR_ASSOCIATION_FAILED = "Cet email n'est pas associé à cette couleur. Réessayez ou contactez-moi.";
+	
+	public static final String EMAIL_NOT_EXISTING = "Cet email n'est associé à aucun compte. Réessayez ou contactez-moi.";
+	
+	public static final String COULEUR_NOT_EXISTING = "Cette couleur n'est associée à aucun compte. Réessayez ou contactez-moi.";
 }

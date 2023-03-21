@@ -29,17 +29,26 @@
 			</form>
 		</div>
 		<div class="mdp-oublie">
-			<p><a href="<%= request.getContextPath()%>/mdpOublie">Mot de passe oublié</a></p>
+			<p><a href="<%= request.getContextPath()%>/mdpOublie">Mot de passe / pseudo oublié(s)</a></p>
 		</div>
 					<c:if test="${!empty requestScope.mdpOublie}">
 		<div class="form-mdp-oublie">
 			<form action="<%=request.getContextPath()%>/mdpOublie" method="post">
 				<label for="email-oublie">Indiquez votre email : </label>
-					<input type="email" name="email-oublie" id="email-oublie" placeholder="Email" max="40" required>
+					<input type="email" name="email-oublie" id="email-oublie" placeholder="Email" max="40" value="${requestScope.userOublie.email}" required>
 				<label for="couleur-oublie">Quelle est votre couleur préférée ? </label>
-					<input type="text" name="couleur-oublie" id="couleur-oublie" placeholder="Indigo du web" max="40" required>
+					<input type="text" name="couleur-oublie" id="couleur-oublie" placeholder="Indigo du web" max="40" value="${requestScope.userOublie.couleur_preferee}" required>
 					<input type="submit" value="Valider">
 			</form>
+		</div>
+		<div class="exceptions">
+			<p>${requestScope.exceptionsOublie.toString()}</p>
+		</div>
+					</c:if>
+					<c:if test="${!empty requestScope.userRappel}">
+		<div class="rappel-identifiants">
+			<p>Votre pseudo : "${requestScope.userRappel.pseudo}"</p>
+			<p>Votre mot de passe : "${requestScope.userRappel.mot_de_passe}"</p>
 		</div>
 					</c:if>
 		<div class="s'inscrire">

@@ -50,4 +50,18 @@ public class UtilisateurManager {
 		utilisateur = utilisateurDAO.inscription_user(user);	
 		return utilisateur;
 	}
+	
+	public Utilisateur identifiants_oublies(Utilisateur user) throws CvExceptions {
+		CvExceptions exceptions = new CvExceptions();
+		user.setPseudo("");
+		user = utilisateurDAO.identifiants_oublies(user);
+		
+		//Si le pseudo n'a pas été modifié, l'email et la couleur préférée ne sont pas associés
+		if((user.getPseudo()).equals("")) {
+			exceptions.addMessage(MsgsExcepts.EMAIL_COULEUR_ASSOCIATION_FAILED);
+			throw exceptions;
+		} 
+		
+		return user;
+	}
 }

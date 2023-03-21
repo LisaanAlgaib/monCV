@@ -17,7 +17,8 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 	private static final String SELECT_PSEUDO_INSCRIPTION = "SELECT pseudo FROM utilisateurs WHERE pseudo = ?;";
 	private static final String SELECT_EMAIL_INSCRIPTION = "SELECT email FROM utilisateurs WHERE email = ?;";
 	private static final String INSERT_INSCRIPTION = "INSERT INTO utilisateurs (pseudo, email, mot_de_passe, couleur_preferee, administrateur) VALUES (?, ?, ?, ?, ?);";
-		
+	private static final String SELECT_IDENTIFIANTS_OUBLIES = "SELECT pseudo, mot_de_passe from utilisateurs WHERE email = ? AND couleur_preferee = ?;";
+	private static final String SELECT_COULEUR_VERIF = "SELECT couleur_preferee FROM utilisateurs WHERE couleur_preferee = ?;";
 	@Override
 	public Utilisateur tester_connexion(String mdp, String pseudo) throws CvExceptions {
 		
@@ -99,6 +100,54 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 		}
 		
 		if(exceptions.hasErrors()) {
+			throw exceptions;
+		}
+		
+		return user;
+	}
+	
+	@Override
+	public Utilisateur identifiants_oublies(Utilisateur user) throws CvExceptions {
+		
+		CvExceptions exceptions = new CvExceptions();
+		
+		try(
+				Connection cnx = ConnectionProvider.getConnection();
+				PreparedStatement pstmt = cnx.prepareStatement(SELECT_IDENTIFIANTS_OUBLIES);
+				PreparedStatement pstmt2 = cnx.prepareStatement(SELECT_EMAIL_INSCRIPTION);
+				PreparedStatement pstmt3 = cnx.prepareStatement(SELECT_COULEUR_VERIF);
+				) {
+			
+			//Vérifie que cet email existe en BDD
+			pstmt2.setString(1, user.getEmail());
+			ResultSet rs2 = pstmt2.executeQuery();
+			if(rs2.next() == false) {
+				exceptions.addMessage(MsgsExcepts.EMAIL_NOT_EXISTING);
+			}
+			
+			//Vérifie que cette couleur existe en BDD
+			pstmt3.setString(1, user.getCouleur_preferee());
+			ResultSet rs3 = pstmt3.executeQuery();
+			if(rs3.next() == false) {
+				exceptions.addMessage(MsgsExcepts.COULEUR_NOT_EXISTING);
+			}
+			
+			//Si l'email et/ou la couleur n'existe(nt) pas, met fin au traitement et propage la ou les exceptions.
+			if(exceptions.hasErrors()) {
+				throw exceptions;
+			}
+			
+			pstmt.setString(1, user.getEmail());
+			pstmt.setString(2, user.getCouleur_preferee());		
+			ResultSet rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				user.setPseudo(rs.getString("pseudo"));
+				user.setMot_de_passe(rs.getString("mot_de_passe"));
+			}
+			
+		} catch(SQLException e) {
+			exceptions.addMessage(MsgsExcepts.CONN_BDD_FAIL);
 			throw exceptions;
 		}
 		
