@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -62,6 +63,14 @@ private UtilisateurManager service;
 		try {
 			user = service.tester_connexion(mot_de_passe, pseudo);
 			session.setAttribute("utilisateur", user);
+			
+			//Vérifie s'il a coché "se souvenir de moi" et le cas échéant, enregistre son pseudo dans un cookie
+			if(req.getParameter("souvenir") != null) {
+				Cookie cPseudo = new Cookie("souvenir", user.getPseudo());
+				cPseudo.setHttpOnly(true);
+				cPseudo.setMaxAge(300000);
+				resp.addCookie(cPseudo);
+			}
 			req.getRequestDispatcher("WEB-INF/pages/index.jsp").forward(req, resp);
 		} catch (CvExceptions e) {
 			req.setAttribute("exceptions", e);

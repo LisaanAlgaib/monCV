@@ -20,7 +20,7 @@
 				</div>
 			<form action="<%= request.getContextPath() %>/connecter" method="post">
 				<label for="identifiant">Pseudo : </label>
-					<input type="text" name="identifiant" placeholder="Pseudo" id="identifiant" max="30"><br>
+					<input type="text" name="identifiant" placeholder="Pseudo" id="identifiant" max="30" value="${cookie['souvenir'].value}"><br>
 				<label for="mdp">Mot de passe : </label>
 					<input type="password" name="mdp" placeholder="Mot de passe" id="mdp" max="40"><br>
 					<input type="checkbox" name="souvenir" value="true" id="souvenir">
