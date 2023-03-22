@@ -4,6 +4,10 @@ public class Personne {
 	
 	private int no_personne;
 	private int no_telephone;
+	private String prenom;
+	private String nom;
+	private String statut;
+	private String description;
 	private String email;
 	private int code_postal;
 	private String ville;
@@ -26,6 +30,10 @@ public class Personne {
 	 * Constructeur entier de la classe personne, classe qui vient remplir la description des informations personnelles de la personne présentée par le CV
 	 * @param no_personne est le numéro unique de la personne du CV. Généré par IDENTITY en BDD
 	 * @param no_telephone
+	 * @param prenom
+	 * @param nom
+	 * @param statut
+	 * @param description
 	 * @param email
 	 * @param code_postal
 	 * @param ville
@@ -40,12 +48,16 @@ public class Personne {
 	 * @param formations est un tableau contenant toutes les formations
 	 * @param interets est un tableau contenant tous les intérêts
 	 */
-	public Personne(int no_personne, int no_telephone, String email, int code_postal, String ville, int age, String nationalite,
+	public Personne(int no_personne, int no_telephone, String prenom, String nom, String statut, String description, String email, int code_postal, String ville, int age, String nationalite,
 			String permis, ReseauSocial[] reseaux_sociaux, String image, SoftSkill[] soft_skills,
 			Competence[] competences, ExperiencePro[] experiences_pros, Formation[] formations, Interet[] interets) {
 		
 		setNo_personne(no_personne);
 		setNo_telephone(no_telephone);
+		setPrenom(prenom);
+		setNom(nom);
+		setStatut(statut);
+		setDescription(description);
 		setEmail(email);
 		setCode_postal(code_postal);
 		setVille(ville);
@@ -65,6 +77,10 @@ public class Personne {
 	/**
 	 * Constructeur de la classe personne sans le paramètre image, classe qui vient remplir la description des informations personnelles de la personne présentée par le CV
 	 * @param no_telephone
+	 * @param prenom
+	 * @param nom
+	 * @param statut
+	 * @param description
 	 * @param email
 	 * @param code_postal
 	 * @param ville
@@ -78,11 +94,15 @@ public class Personne {
 	 * @param formations
 	 * @param interets
 	 */
-	public Personne(int no_telephone, String email, int code_postal, String ville, int age, String nationalite,
+	public Personne(int no_telephone, String prenom, String nom, String statut, String description, String email, int code_postal, String ville, int age, String nationalite,
 			String permis, ReseauSocial[] reseaux_sociaux, SoftSkill[] soft_skills, Competence[] competences,
 			ExperiencePro[] experiences_pros, Formation[] formations, Interet[] interets) {
 		
 		setNo_telephone(no_telephone);
+		setPrenom(prenom);
+		setNom(nom);
+		setStatut(statut);
+		setDescription(description);
 		setEmail(email);
 		setCode_postal(code_postal);
 		setVille(ville);
@@ -215,6 +235,38 @@ public class Personne {
 
 	public void setNo_personne(int no_personne) {
 		this.no_personne = no_personne;
+	}
+
+	public String getStatut() {
+		return statut;
+	}
+
+	public void setStatut(String statut) {
+		this.statut = statut;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getPrenom() {
+		return prenom;
+	}
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
 	
 }

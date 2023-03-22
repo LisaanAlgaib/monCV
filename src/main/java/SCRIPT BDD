@@ -66,6 +66,9 @@ ALTER TABLE RESEAUX_SOCIAUX ADD CONSTRAINT pk_reseaux_sociaux PRIMARY KEY (no_re
 CREATE TABLE PERSONNES (
 no_personne INTEGER IDENTITY(1,1) NOT NULL,
 no_telephone INTEGER NOT NULL,
+prenom VARCHAR(40) NOT NULL,
+nom VARCHAR(40) NOT NULL,
+description VARCHAR(350) NULL,
 email VARCHAR(40) NOT NULL,
 code_postal INTEGER NOT NULL,
 ville VARCHAR(60) NOT NULL,
@@ -122,3 +125,6 @@ ALTER TABLE RESEAUX_SOCIAUX
     ADD CONSTRAINT fk_reseaux_sociaux_personnes FOREIGN KEY ( no_personne ) REFERENCES PERSONNES ( no_personne )
 	ON DELETE NO ACTION 
     ON UPDATE NO ACTION
+    
+    !!!!!!! Création utilisateur !!!!!! 
+    INSERT INTO utilisateurs (pseudo, email, mot_de_passe, couleur_preferee, administrateur) VALUES ('Kwisatz', 'hugo.naze.cv@gmail.com', 'f69', 'fgdfzfdiuhizuifndiubfzuiyfbdks', 1);

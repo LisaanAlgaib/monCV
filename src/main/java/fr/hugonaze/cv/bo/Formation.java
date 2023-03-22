@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 public class Formation {
 
 	private int no_formation;
+	private String nom_classe = "FORMATIONS";
 	private String appellation;
 	private LocalDateTime date_debut;
 	private LocalDateTime date_fin;

@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 public class ExperiencePro {
 
 	private int no_experience_pro;
+	private String nom_classe = "EXPÉRIENCES PROFESSIONNELLES";
 	private String appellation;
 	private String ville;
 	private String entreprise;

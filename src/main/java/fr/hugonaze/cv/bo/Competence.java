@@ -3,6 +3,7 @@ package fr.hugonaze.cv.bo;
 public class Competence {
 
 	private int no_competence;
+	private String nom_classe = "COMPÉTENCES";
 	private String appellation;
 	private String description;
 	

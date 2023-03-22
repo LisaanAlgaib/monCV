@@ -3,6 +3,7 @@ package fr.hugonaze.cv.bo;
 public class ReseauSocial {
 
 	private int no_reseau_social;
+	private String nom_classe = "RÉSEAUX SOCIAUX";
 	private String appellation;
 	private String lien;
 	private Personne detenteur;

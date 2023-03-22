@@ -3,6 +3,7 @@ package fr.hugonaze.cv.bo;
 public class Interet {
 	
 	private int no_interet;
+	private String nom_classe = "INTÉRÊTS";
 	private String appellation;
 	private String image;
 	

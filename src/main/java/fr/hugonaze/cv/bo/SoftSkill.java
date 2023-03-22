@@ -3,6 +3,7 @@ package fr.hugonaze.cv.bo;
 public class SoftSkill {
 	
 	private int no_soft_skill;
+	private String nom_classe = "SOFT SKILLS";
 	private String appellation;
 	private String image;
 	
